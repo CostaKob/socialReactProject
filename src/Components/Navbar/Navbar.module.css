@@ -1,17 +1,17 @@
 .nav {
     grid-area: n;
-    background-color: teal;
-    padding-top: 20px;
-    padding-left: 20px;
+    background-color:#424242;
+    padding: 20px;
+    margin-top: 25px;;
   }
-
 .item {
-  color: white;
-  padding-left: 5px;
-  padding-top: 5px;
-  font-size: x-large;
-  font-style: oblique;
+  padding:10px;
 }
-.item.active {
-  color: gold;
+.item a {
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+}
+.item a.active {
+  color: #007bff;
 }

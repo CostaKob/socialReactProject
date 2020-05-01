@@ -1,11 +1,10 @@
 .header {
-    height:50px;
+    height:70px;
     grid-area: h;
-    background-color: teal;
+    background-color: #343434;
     margin-bottom: 20px;
   }
   
   .header img {
-    width: 50px;
-    height:50px;
+    padding: 20px;
   }
