@@ -1,6 +1,6 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 4fr 10fr;
+    grid-template-columns: 2fr 10fr;
     color:white;
 }
 
@@ -9,8 +9,13 @@
     
 }
 
+.dialogsItem a {
+    text-decoration: none;
+    color: white;   
+}
+
 .dialogsItem .active {
-    color: #007bff;
+    color: #007bff;   
 }
 
 .dialog {
