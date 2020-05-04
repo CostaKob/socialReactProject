@@ -12,6 +12,8 @@ const Dialogs = (props) => {
         props.state.messages.map(m => <Message message={m.message} />);
         console.log(messagesElements);
 
+        
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItem}>
@@ -20,7 +22,7 @@ const Dialogs = (props) => {
 
             </div>
             <div className={classes.messages}>
-
+            
                 {messagesElements}
 
             </div>
