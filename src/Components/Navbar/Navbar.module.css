@@ -1,42 +1,56 @@
 .nav {
-    grid-area: n;
-    background-color:#424242;
-    padding: 20px;
-    margin-top: 25px;;
-  }
-.item {
-  padding:10px;
+  grid-area: n;
+  background-color: #424242;
+  padding: 20px;
+  margin-top: 25px;
+  ;
 }
+
+.item {
+  padding: 10px;
+}
+
 .item a {
   color: white;
   font-size: 16px;
   text-decoration: none;
 }
+
 .item a.active {
   color: #007bff;
 }
 
+.friendsBarContent {
+  border-style: solid;
+  color: white;
+  
+}
+
 .friendsBar {
+  display: inline-block;
+  padding: 5px;
   margin-left: auto;
   margin-right: auto;
   width: auto;
   color: white;
-  border-style: solid;
-  margin-top: 100px;
+  text-align: center;
+  
+
 }
 
 .friendsBar img {
   width: 40px;
   height: 40px;
-  padding:1px;
-  margin-left: 4.5px;
-  margin-right: 4.5px;
 }
 
-.friendsBar h3{
-text-align: center;
+.friendsBarHeader {
+  text-align: center;
+  border-style: solid;
+  color: white;
+  margin-top: 100px;
+  border-bottom: none;
 }
 
-.friendsIcons {
-
+.friendsBarHeader h3 {
+  margin: 0;
 }

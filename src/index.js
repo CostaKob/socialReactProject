@@ -2,18 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import { addPost, updateNewPostText, subscribe } from './redux/state';
-import state from './redux/state';
+import store from './redux/state';
 
-let rerenderEntireTree = () => {
+let rerenderEntireTree = (state) => {
     
     ReactDOM.render(
         <App state={state}
-             addPost={addPost}
-             updateNewPostText={updateNewPostText}/>,document.getElementById('root'));
+             addPost={store.addPost.bind(store)}
+             updateNewPostText={store.updateNewPostText.bind(store)}
+             friends={store.getState().sideBar.friends}
+             addMessage={store.addMessage.bind(store)}/>,document.getElementById('root'));
 };
 
 
-rerenderEntireTree (state);
-subscribe(rerenderEntireTree);
+rerenderEntireTree (store.getState());
+store.subscribe(rerenderEntireTree);
 

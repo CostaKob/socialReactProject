@@ -9,7 +9,10 @@ const Dialogs = (props) => {
         props.state.dialogs.map(d => <DialogsItem name={d.name} id={d.id} />);
 
     let messagesElements =
-        props.state.messages.map(m => <Message message={m.message} />);
+        props.state.messages.map(m => <Message
+                                        newMessageText={props.state.newMessageText}
+                                        message={m.message}
+                                        addMessage={props.addMessage} />);
         console.log(messagesElements);
 
         let newMessage = React.createRef();
@@ -27,9 +30,7 @@ const Dialogs = (props) => {
 
             </div>
             <div className={classes.messages}>
-            <div>
 
-      </div>
                 {messagesElements}
 
             </div>
