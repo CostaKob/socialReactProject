@@ -8,7 +8,7 @@ const Message = (props) => {
     let newMessage = React.createRef();
 
         let addMessage = () => {
-          props.addMessage();
+          props.dispatch({ type: "ADD-MESSAGE" });
         };
 
     let onMessageChange = () => {

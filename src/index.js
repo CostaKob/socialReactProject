@@ -5,16 +5,15 @@ import './index.css';
 import store from './redux/state';
 
 let rerenderEntireTree = (state) => {
-    
+
     ReactDOM.render(
         <App state={state}
-             addPost={store.addPost.bind(store)}
-             updateNewPostText={store.updateNewPostText.bind(store)}
-             friends={store.getState().sideBar.friends}
-             addMessage={store.addMessage.bind(store)}/>,document.getElementById('root'));
+            dispatch={store.dispatch.bind(store)}
+            friends={store.getState().sideBar.friends}
+        />, document.getElementById('root'));
 };
 
 
-rerenderEntireTree (store.getState());
+rerenderEntireTree(store.getState());
 store.subscribe(rerenderEntireTree);
 
