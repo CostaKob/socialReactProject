@@ -5,7 +5,7 @@ const Message = (props) => {
 
     let newMessage = React.createRef();
     return (
-        <div>
+        <div className={classes.message}>
             {props.message}
         </div>
     )
