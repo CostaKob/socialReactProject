@@ -40,7 +40,6 @@ let store = {
                 { id: 300, name: 'Yuli', img: 'https://www.kindpng.com/picc/b/163/1636340.png' }
             ]
         }
-
     },
     _callSubscriber() {
         console.log('State changed');
