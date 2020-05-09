@@ -11,7 +11,7 @@ let friendsElements =
 
   return (
       <nav className={classes.nav}>
-        <div className={`${classes.item}`}>
+        <div className={classes.item}>
           <NavLink to="/profile" activeClassName={classes.active}>Profile</NavLink>
         </div>
         <div className={classes.item}>
@@ -32,8 +32,6 @@ let friendsElements =
           <div className={classes.friendsBarContent}>
             {friendsElements}
           </div>
-        
-          
       </nav>
   );
 }
