@@ -4,10 +4,10 @@ import classes from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 import FriendsBar from './FriendsBar/FriendsBar';
 
-const Navbar = (props) => {
+const Navbar = () => {
 
-let friendsElements =
-    props.friends.map( f => <FriendsBar name={f.name} id={f.id} img={f.img} /> );
+// let friendsElements =
+//     store.state.sideBar.friends.map( f => <FriendsBar name={f.name} id={f.id} img={f.img} /> );
 
   return (
       <nav className={classes.nav}>
@@ -26,12 +26,12 @@ let friendsElements =
         <div className={classes.item}>
           <NavLink to="/settings" activeClassName={classes.active}>Settings</NavLink>
         </div>
-        <div className={classes.friendsBarHeader}>
+        {/* <div className={classes.friendsBarHeader}>
           <h3>My Friends</h3>
         </div>
           <div className={classes.friendsBarContent}>
             {friendsElements}
-          </div>
+          </div> */}
       </nav>
   );
 }

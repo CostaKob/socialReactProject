@@ -1,21 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import './index.css';
 import store from './redux/redux-store';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import './index.css';
 
-let rerenderEntireTree = (state) => {
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </BrowserRouter>, document.getElementById('root'));
 
-    ReactDOM.render(
-        <App store={store} state={state}
-            dispatch={store.dispatch.bind(store)}
-            friends={store.getState().sideBar.friends}
-        />, document.getElementById('root'));
-};
-
-rerenderEntireTree(store.getState());
-store.subscribe(() => {
-    let state = store.getState();
-    rerenderEntireTree(state);
-});
 
