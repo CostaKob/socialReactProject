@@ -19,8 +19,7 @@ body {
   color: white;
     grid-area: c;
     background-color: #424242;
-    padding-top: 20px;
-    padding-left: 15px;
+    padding: 20px;
     margin-left: 20px;
     margin-top: 25px;
 }

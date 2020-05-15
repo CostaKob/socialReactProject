@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Users.module.css';
 import userPhoto from '../../assets/images/user.png';
+import { NavLink } from 'react-router-dom';
 
 
 let Users = (props) => {
@@ -16,7 +17,7 @@ let Users = (props) => {
         <div>
             {pages.map(p => {
                 if (p <= 20) {
-                    return <span onClick={(e) => { props.onPageChange(p) }} className={props.currentPage === p && classes.selectedPage}>{p}</span>
+                    return <span onClick={(e) => { props.onPageChange(p) }} className={props.currentPage === p && classes.selectedPage}>{p + " "}</span>
                 }
             })}
         </div>
@@ -24,9 +25,9 @@ let Users = (props) => {
             props.users.map((u) =>
                 <div key={u.id}>
                     <span>
-                        <div className={classes.user}>
+                        <NavLink to={'/profile/' + u.id } className={classes.user}>
                             <img src={u.photos.small != null ? u.photos.small : userPhoto} />
-                        </div>
+                        </NavLink>
                         <div>
                             {u.followed
                                 ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
@@ -37,12 +38,12 @@ let Users = (props) => {
                     <span>
                         <span>
                             <div>{u.name}</div>
-                            <div>{"u.lastName"}</div>
-                            <div>{u.status}</div>
+                            {/* <div>{"u.lastName"}</div> */}
+                            {/* <div>{u.status}</div> */}
                         </span>
                         <span>
-                            <div>{"u.location.country"}</div>
-                            <div>{"u.location.city"}</div>
+                            {/* <div>{"u.location.country"}</div> */}
+                            {/* <div>{"u.location.city"}</div> */}
                         </span>
                     </span>
                 </div>)
