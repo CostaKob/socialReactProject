@@ -8,7 +8,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 // ETO NASH STATE
 let initialState = {
     users: [],
-    pageSize: 5,
+    pageSize: 50,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false
