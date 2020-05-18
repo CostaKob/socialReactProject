@@ -2,9 +2,7 @@ import React from 'react';
 import classes from './Users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
-import * as axios from 'axios';
-
-
+import { usersAPI } from '../../api/api';
 
 let Users = (props) => {
 
@@ -32,52 +30,38 @@ let Users = (props) => {
                         </NavLink>
                         <div>
                             {u.followed
-                                ? <button onClick={() => {
+                                ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                                     // delete like get withCredentials SECOND param
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "b06971d9-611c-48a0-b181-a32de5e059d3"
-                                        }
-                                    })
-                                        .then(response => {
-                                            if (response.data.resultCode == 0) {
-                                                props.unfollow(u.id);
+                                    props.toggleFollowingInProgress(true, u.id);
+                                    usersAPI.follow(u.id)
+                                        .then(data => {
+                                            if (data.resultCode == 0) {
+                                                props.unfollow(u.id)
                                             }
+                                            props.toggleFollowingInProgress(false, u.id);
                                         });
-
                                 }}>Unfollow</button>
-                                : <button onClick={() => {
+                                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                                     // in post request withCredentials THIRD param
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "b06971d9-611c-48a0-b181-a32de5e059d3"
-                                        }
-                                    })
-                                        .then(response => {
-                                            if (response.data.resultCode == 0) {
-                                                props.follow(u.id);
+                                    props.toggleFollowingInProgress(true, u.id);
+                                    usersAPI.unfollow(u.id)
+                                        .then(data => {
+                                            if (data.resultCode == 0) {
+                                                props.follow(u.id)
                                             }
+                                            props.toggleFollowingInProgress(false, u.id);
                                         });
                                 }}>Follow</button>
                             }
                         </div>
                     </span>
                     <span>
-                        <span>
-                            <div>{u.name}</div>
-                            {/* <div>{"u.lastName"}</div> */}
-                            {/* <div>{u.status}</div> */}
-                        </span>
-                        <span>
-                            {/* <div>{"u.location.country"}</div> */}
-                            {/* <div>{"u.location.city"}</div> */}
-                        </span>
+                        <div>{u.name}</div>
                     </span>
-                </div>)
+                </div >
+            )
         }
-    </div>
+    </div >
 }
 
 export default Users;
