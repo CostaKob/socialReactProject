@@ -13,15 +13,12 @@
     float: right;
     padding-right: 20px;
     padding-top: 40px;
-    color: white;
     font-weight: bold;
+    color: white;
   }
 
   .loginBlock a {
     text-decoration: none;
     font-size: 20px;
-  }
-
-  .loginBlock a:active {
-    color: #007bff;
+    color: white;
   }
