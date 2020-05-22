@@ -2,10 +2,12 @@ import React from 'react';
 import Profile from './Profile';
 import { getUserProfileThunk } from '../../redux/profile-reducer';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     // Here we place all the side effects
     let userId = this.props.match.params.userId;
     if (!userId) {
@@ -14,9 +16,10 @@ class ProfileContainer extends React.Component {
     this.props.getUserProfileThunk(userId);
   }
   render() {
+
     return (
       <div>
-        <Profile { ...this.props } profile={this.props.profile} />
+        <Profile {...this.props} profile={this.props.profile} />
       </div>
     )
   }
@@ -26,6 +29,8 @@ let mapStateToProps = (state) => ({
   profile: state.profilePage.profile
 });
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer);
-
-export default connect (mapStateToProps, {getUserProfileThunk}) (WithUrlDataContainerComponent);
+export default compose(
+  connect(mapStateToProps, { getUserProfileThunk }),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);

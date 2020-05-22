@@ -33,17 +33,3 @@ const ProfileInfo = (props) => {
 }
 
 export default ProfileInfo;
-
-{/* <div class={classes.descriptionBlock}>
-  <img src={props.profile.photos.large} />
-  <h1>Profile Name</h1>
-  <p>{props.profile.aboutMe}</p>
-  <p>Harvard University</p>
-  <div>
-    <a href="#"><i class="fa fa-dribbble"></i></a> 
-    <a href="#"><i class="fa fa-twitter"></i></a>  
-    <a href="#"><i class="fa fa-linkedin"></i></a>  
-    <a href="#"><i class="fa fa-facebook"></i></a> 
-  </div>
-  <p><button>Contact</button></p>
-</div> */}
