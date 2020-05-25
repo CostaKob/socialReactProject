@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
     // Here we place all the side effects
     let userId = this.props.match.params.userId;
     if (!userId) {
-      userId = 2;
+      userId = 8157;
     }
     this.props.getUserProfileThunk(userId);
     this.props.getStatusThunk(userId);
@@ -28,7 +28,7 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
-  status:state.profilePage.status
+  status: state.profilePage.status
 });
 
 export default compose(
