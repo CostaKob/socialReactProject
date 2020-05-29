@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Login.module.css';
+import classes from '../Common/FormsControls/FormsControls.module.css';
 import { reduxForm, Field } from 'redux-form';
 import { Input } from '../Common/FormsControls/FormsControls';
 import { required } from '../../utils/validators/validators';
@@ -19,7 +19,8 @@ const LoginForm = (props) => {
             </div>
             <div>
                 <Field component={Input} name={"rememberMe"} type={"checkbox"} />Remember me
-                    </div>
+            </div>
+            { props.error && <div className={classes.formSummaryError}>{props.error}</div> }
             <div>
                 <button>Login</button>
             </div>
@@ -50,4 +51,4 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, {login} )(Login);
+export default connect(mapStateToProps, { login })(Login);
