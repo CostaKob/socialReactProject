@@ -10,10 +10,14 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     // Here we place all the side effects
     let userId = this.props.match.params.userId;
-    console.log(this.props)
+
     if (!userId) {
       userId = this.props.loggedinUserId;
+      if(!userId){
+        this.props.history.push('/login'); // not so good solution, better to do redirect in the jsx
+      }
     }
+
     this.props.getUserProfileThunk(userId);
     this.props.getStatusThunk(userId);
   }
