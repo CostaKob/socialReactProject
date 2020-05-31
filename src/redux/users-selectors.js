@@ -1,5 +1,7 @@
+// MSTP постоянно запускается с каждым изменением STATE!!!
+
 export const getUsers = (state) => {
-    return state.usersPage.users;
+    return state.usersPage.users; 
 };
 
 export const getPageSize = (state) => {
