@@ -10,12 +10,12 @@ class ProfileStatus extends React.Component {
     activateEditMode = () => {
         
         this.setState ( {
-            editMode: true // setState asynchron
+            editMode: true // setState asynchron.
         } );
     }
     deactivateEditMode = () => {
         this.setState ( {
-            editMode: false // setState asynchron
+            editMode: false // setState asynchron.
         } );
         this.props.updateStatusThunk(this.state.status);
     };
