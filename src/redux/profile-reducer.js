@@ -3,6 +3,7 @@ import { usersAPI, profileApi } from '../api/api';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const DELETE_POST = 'DELETE-POST';
 
 
 let initialState = {
@@ -40,7 +41,12 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 status: action.status
-            }
+            };
+        case DELETE_POST:
+        return {
+            ...state,
+            posts: state.posts.filter(p => p.id != action.postId)
+        }
 
         default:
             return state;
@@ -60,6 +66,12 @@ export const setUserProfileActionCreator = (profile) => ({
 export const setStatusActionCreator = (status) => ({
     type: SET_STATUS,
     status
+});
+
+
+export const deletePostActionCreator = (postId) => ({
+    type: DELETE_POST,
+    postId
 });
 
 // Thunks
