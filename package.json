@@ -14,7 +14,9 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "react-test-renderer": "^16.13.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
