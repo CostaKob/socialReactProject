@@ -7,8 +7,8 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
-    // Here we place all the side effects
+
+  refreshProfile() {
     let userId = this.props.match.params.userId;
 
     if (!userId) {
@@ -21,6 +21,18 @@ class ProfileContainer extends React.Component {
     this.props.getUserProfileThunk(userId);
     this.props.getStatusThunk(userId);
   }
+
+  componentDidMount() {
+    // Here we place all the side effects
+    this.refreshProfile();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.match.params.userId != prevProps.match.params.userId){
+      this.refreshProfile();
+    }
+  }
+
   render() {
     return (
       <div>
