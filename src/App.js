@@ -5,7 +5,7 @@ import Navbar from './Components/Navbar/Navbar';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
 import Settings from './Components/Settings/Settings';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, HashRouter } from 'react-router-dom';
 import UsersContainer from './Components/Users/UsersContainer';
 import Login from './Components/Login/Login';
 import { initializeApp } from './redux/app-reducer';
@@ -66,11 +66,11 @@ const AppContainer = compose(
 
 const SamuraiJSApp = (props) => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
