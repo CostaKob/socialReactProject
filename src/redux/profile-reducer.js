@@ -4,6 +4,7 @@ const ADD_POST = 'profile/ADD-POST';
 const SET_USER_PROFILE = 'profile/SET-USER-PROFILE';
 const SET_STATUS = 'profile/SET-STATUS';
 const DELETE_POST = 'profile/DELETE-POST';
+const SAVE_PHOTO_SUCCESS = 'profile/SAVE-PHOTO-SUCCESS';
 
 
 let initialState = {
@@ -46,8 +47,12 @@ const profileReducer = (state = initialState, action) => {
         return {
             ...state,
             posts: state.posts.filter(p => p.id != action.postId)
-        }
-
+        };
+        case SAVE_PHOTO_SUCCESS:
+        return {
+            ...state,
+            profile: {...state.profile, photos: action.photos}
+        };
         default:
             return state;
     }
@@ -69,6 +74,11 @@ export const setStatusActionCreator = (status) => ({
     status
 });
 
+export const savePhotoSuccess = (photos) => ({
+    type: SAVE_PHOTO_SUCCESS,
+    photos
+});
+
 
 export const deletePostActionCreator = (postId) => ({
     type: DELETE_POST,
@@ -79,21 +89,38 @@ export const deletePostActionCreator = (postId) => ({
 
 export const getUserProfileThunk = (userId) => async (dispatch) => {
 
-    let response = await usersAPI.getProfile(userId)
+    const response = await usersAPI.getProfile(userId)
     dispatch(setUserProfileActionCreator(response.data));
 };
 
 export const getStatusThunk = (userId) => async (dispatch) => {
 
-    let response = await profileApi.getStatus(userId)
+    const response = await profileApi.getStatus(userId)
     dispatch(setStatusActionCreator(response.data));
 };
 
 export const updateStatusThunk = (status) => async (dispatch) => {
 
-    let response = await profileApi.updateStatus(status)
+    const response = await profileApi.updateStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(setStatusActionCreator(status));
+    }
+};
+
+export const savePhoto = (file) => async (dispatch) => {
+
+    const response = await profileApi.savePhoto(file);
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos));
+    }
+};
+
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    const response = await profileApi.saveProfile(profile);
+    
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfileThunk(userId));
     }
 };
 

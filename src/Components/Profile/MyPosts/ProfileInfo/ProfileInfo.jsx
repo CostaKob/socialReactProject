@@ -1,35 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './ProfileInfo.module.css';
 import Preloader from '../../../Common/Preloader/Preloader';
 import ProfileStatusWithHooks from '../../ProfileStatusWithHooks';
 import userPhoto from '../../../../assets/images/user.png';
+import { ProfileDataFormReduxForm } from './ProfileDataForm';
 
-const ProfileInfo = ({ profile, updateStatusThunk, status }) => {
+const ProfileInfo = ({ profile, updateStatusThunk, status, isOwner, savePhoto, saveProfile }) => {
+
+  let [editMode, setEditMode] = useState(false);
+
   if (!profile) {
     return <Preloader />
   }
+
+  const onMainPhotoSelect = (e) => {
+    if (e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
+  };
+
+  const onSubmit = (formData) => {
+   saveProfile(formData);
+   setEditMode(false);
+};
+
   return (
     <div>
-      <div className={classes.row}>
-        <div className={classes.column}>
-          <img src={profile.photos.large || userPhoto} />
-          <h2>{profile.fullName}</h2>
-          <p>{profile.aboutMe}</p>
-          <div><ProfileStatusWithHooks status={status} updateStatusThunk={updateStatusThunk} /></div>
-        </div>
-        <div className={classes.column}>
-          <h2>My Contacts:</h2>
-          <ul>
-            <li><a href={profile.contacts.website}>Website</a></li>
-            <li><a href={profile.contacts.facebook}>Facebook</a></li>
-            <li><a href={profile.contacts.twitter}>Twitter</a></li>
-            <li><a href={profile.contacts.instagram}>Instagram</a></li>
-          </ul>
-          <div className={classes.lookinForAJob}>Looking for a job? {profile.lookingForAJobDescription}</div>
-        </div>
-      </div>
+      <div className={classes.image}><img src={profile.photos.large || userPhoto} /></div>
+      {isOwner && <input type={"file"} onChange={onMainPhotoSelect} />}
+
+      {editMode
+        ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
+        : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={profile} isOwner={isOwner} />}
+
+      <div><ProfileStatusWithHooks status={status} updateStatusThunk={updateStatusThunk} /></div>
     </div>
   );
+}
+
+const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+  return (
+    <div>
+      {isOwner && <div><button onClick={goToEditMode}>Edit</button></div>}
+      <h2><b>My name is:</b> {profile.fullName}</h2>
+      <p>{profile.aboutMe}</p>
+
+      <h2>My Contacts:</h2>
+      <div>
+        {Object.keys(profile.contacts).map(key => {
+          return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+        })}
+      </div>
+      <div className={classes.lookinForAJob}>
+        <b>Looking for a job</b>:{profile.lookingForAJob ? "Yes!" : "No"}
+      </div>
+      {profile.lookingForAJob &&
+        <div className={classes.lookinForAJob}>
+          <b>My skills</b>:{profile.lookingForAJobDescription}
+        </div>
+      }
+    </div>
+  )
+}
+
+const Contact = ({ contactTitle, contactValue }) => {
+  return (
+    <div><a href={contactValue}><b>{contactTitle}</b></a></div>
+  )
 }
 
 export default ProfileInfo;

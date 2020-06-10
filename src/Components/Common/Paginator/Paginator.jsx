@@ -27,7 +27,7 @@ export const Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChange
                     return <span onClick={(e) => {
                         onPageChange(p)
                     }}
-                        className={currentPage === p && classes.selectedPage}>
+                        className={currentPage === p ? classes.selectedPage : classes.pageNumbers}>
                         {p + " "}
                     </span>
                 

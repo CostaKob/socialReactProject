@@ -4,11 +4,16 @@ import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 const Profile = (props) => {
-// debugger;
+//  debugger;
   return (
     <div className={classes.content}>
 
-      <ProfileInfo profile={props.profile} status={props.status} updateStatusThunk={props.updateStatusThunk} />
+      <ProfileInfo profile={props.profile}
+        status={props.status}
+        updateStatusThunk={props.updateStatusThunk}
+        isOwner={props.isOwner}
+        savePhoto={props.savePhoto}
+        saveProfile={props.saveProfile} />
 
       <MyPostsContainer />
         

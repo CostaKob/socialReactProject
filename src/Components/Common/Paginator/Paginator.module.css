@@ -1,4 +1,5 @@
-.selectedPage {
+.selectedPage, .pageNumbers:hover {
     font-weight: bold;
     color:  #007bff;
+    cursor:pointer;
 }
