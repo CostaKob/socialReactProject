@@ -8,8 +8,8 @@ import { Textarea } from '../../Common/FormsControls/FormsControls';
 const MyPosts = React.memo(props => {
   
   let postsElements =
-  //snachala KOPIRUEM massiv dlya immutabelnosti
-  [...props.posts].reverse().map(p => <Post message={p.message} likes={p.likesCount} key={p.id} />);
+  //copy the array for immutab.
+  [...props.posts].reverse().map(p => <Post key={p.id} message={p.message} likes={p.likesCount} key={p.id} />);
 
   const onSubmit = (values) => {
     props.addPost(values.newPostBody);

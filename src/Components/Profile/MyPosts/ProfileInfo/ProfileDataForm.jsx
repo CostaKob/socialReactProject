@@ -2,26 +2,34 @@ import React from 'react';
 import { createField, Input, Textarea } from '../../../Common/FormsControls/FormsControls';
 import classes from './ProfileInfo.module.css';
 import { reduxForm } from 'redux-form';
+import errorStyle from '../../../Common/FormsControls/FormsControls.module.css';
 
-const ProfileDataForm = ({ handleSubmit }) => {
+const ProfileDataForm = ({ profile, handleSubmit, error }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <div><button>Save</button></div>
-      <div> { createField("Full name", "fullName", [], Input) }</div>
-      <div><b>About me:</b>{ createField("About Me", "aboutMe", [], Textarea) }</div>
-      {/* <div>My Contacts:
-        {Object.keys(profile.contacts).map(key => {
-          return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
-        })}
-      </div> */}
-      <div className={classes.lookinForAJob}>
-        <b>Looking for a job</b>: { createField("", "lookingForAJob", [], Input, {type: "checkbox"}) }
+    <form onSubmit={profile, handleSubmit}>
+      <div>
+        <button>Save</button>
       </div>
-        <div className={classes.lookinForAJob}>
-          <b>My skills</b>:{ createField("My professional skills", "lookingForAJobDescription", [], Textarea) }
+
+      {error && <div className={errorStyle.formSummaryError}>{error}</div>}
+
+      <div> {createField("Full name", "fullName", [], Input)}</div>
+      <div><b>About me:</b>{createField("About Me", "aboutMe", [], Textarea)}</div>
+      <div>My Contacts:
+        {Object.keys(profile.contacts).map(key => {
+        return <div key={key}>
+          {key}: {createField(key, "contacts." + key, [], Textarea)}
         </div>
+      })}
+      </div>
+      <div className={classes.lookinForAJob}>
+        <b>Looking for a job</b>: {createField("", "lookingForAJob", [], Input, { type: "checkbox" })}
+      </div>
+      <div className={classes.lookinForAJob}>
+        <b>My skills</b>:{createField("My professional skills", "lookingForAJobDescription", [], Textarea)}
+      </div>
     </form>
   )
 }
 
-export const ProfileDataFormReduxForm = reduxForm({form:'edit-profile'})(ProfileDataForm)
+export const ProfileDataFormReduxForm = reduxForm({ form: 'edit-profile' })(ProfileDataForm)

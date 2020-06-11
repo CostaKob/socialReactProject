@@ -5,3 +5,7 @@
 a:hover {
     cursor:pointer;
    }
+.contact a {
+    color: white;
+    text-decoration: none;
+}
