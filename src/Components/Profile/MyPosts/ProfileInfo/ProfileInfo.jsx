@@ -18,7 +18,7 @@ const ProfileInfo = ({ profile, updateStatusThunk, status, isOwner, savePhoto, s
       savePhoto(e.target.files[0]);
     }
   };
-// not so good solution
+  // not so good solution
   const onSubmit = (formData) => {
     saveProfile(formData).then(() => {
       setEditMode(false);
