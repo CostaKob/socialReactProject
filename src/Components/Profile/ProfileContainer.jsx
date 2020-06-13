@@ -13,7 +13,7 @@ class ProfileContainer extends React.Component {
 
     if (!userId) {
       userId = this.props.loggedinUserId;
-      if(!userId){
+      if (!userId) {
         this.props.history.push('/login'); // not so good solution, better to do redirect in the jsx
       }
     }
@@ -28,7 +28,7 @@ class ProfileContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.match.params.userId != prevProps.match.params.userId){
+    if (this.props.match.params.userId != prevProps.match.params.userId) {
       this.refreshProfile();
     }
   }
@@ -40,7 +40,7 @@ class ProfileContainer extends React.Component {
           profile={this.props.profile}
           status={this.props.status}
           updateStatusThunk={this.props.updateStatusThunk}
-          isOwner={ !this.props.match.params.userId }
+          isOwner={!this.props.match.params.userId}
           savePhoto={this.props.savePhoto} />
       </div>
     )

@@ -5,7 +5,7 @@ import Navbar from './Components/Navbar/Navbar';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
 import Settings from './Components/Settings/Settings';
-import { Route, withRouter, HashRouter } from 'react-router-dom';
+import { Route, withRouter, HashRouter, Switch, Redirect } from 'react-router-dom';
 import UsersContainer from './Components/Users/UsersContainer';
 import Login from './Components/Login/Login';
 import { initializeApp } from './redux/app-reducer';
@@ -36,20 +36,25 @@ class App extends React.Component {
         <Navbar />
 
         <div className='app-wrapper-content'>
+          <Switch>
+            <Route exact path='/' render={ () => <Redirect to={'/profile'} /> } />
 
-          <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)} />
-          <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
-          
-          <Route path='/users' render={() => <UsersContainer />} />
+            <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)} />
+            
+            <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
 
-          <Route path='/news' render={() => <News />} />
+            <Route path='/users' render={() => <UsersContainer />} />
 
-          <Route path='/music' render={() => <Music />} />
+            <Route path='/news' render={() => <News />} />
 
-          <Route path='/settings' render={() => <Settings />} />
+            <Route path='/music' render={() => <Music />} />
 
-          <Route path='/login' render={() => <Login />} />
+            <Route path='/settings' render={() => <Settings />} />
 
+            <Route path='/login' render={() => <Login />} />
+
+            <Route path='*' render={() => <div>404 NOT FOUND</div>} />
+          </Switch>
         </div>
       </div>
     );
