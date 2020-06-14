@@ -27,27 +27,27 @@ const ProfileInfo = ({ profile, updateStatusThunk, status, isOwner, savePhoto, s
 
   return (
     <div>
-      <div className={classes.image}><img src={profile.photos.large || userPhoto} /></div>
-      {isOwner && <input type={"file"} onChange={onMainPhotoSelect} />}
-
+        <span className={classes.image}><img src={profile.photos.large || userPhoto} /></span>
+        
+      
       {editMode
         ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit} />
         : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={profile} isOwner={isOwner} />}
-
+      <div>{isOwner && <input type={"file"} onChange={onMainPhotoSelect} />}</div>
       <div><ProfileStatusWithHooks status={status} updateStatusThunk={updateStatusThunk} /></div>
+      <hr />
     </div>
   );
 }
 
 const ProfileData = ({ profile, isOwner, goToEditMode }) => {
   return (
-    <div>
+    <div className={classes.column}>
       {isOwner && <div><button onClick={goToEditMode}>Edit</button></div>}
-      <h2><b>My name is:</b> {profile.fullName}</h2>
-      <p>{profile.aboutMe}</p>
-
 
       <div>
+      <h2><b>My name is:</b> {profile.fullName}</h2>
+      <p>{profile.aboutMe}</p>
         <h2>My Contacts:</h2>
         {Object.keys(profile.contacts).map(key => {
           return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import classes from './Profile.module.css';
+import classes from './MyPosts/ProfileInfo/ProfileInfo.module.css';
 
 // let arr = [0, () => {}]; destructuring assigment
 // let [a, setA] = arr;
@@ -29,7 +29,7 @@ const ProfileStatusWithHooks = (props) => {
     return (
         <div>
             {!editMode &&
-                <div>
+                <div className={classes.status}>
                     <b>Status:</b><span onDoubleClick={activateEditMode}>{props.status || "----------"}</span>
                 </div>
             }

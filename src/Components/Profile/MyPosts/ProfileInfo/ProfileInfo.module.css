@@ -9,3 +9,12 @@ a:hover {
     color: white;
     text-decoration: none;
 }
+
+.column {
+    float: right;
+    width:50%;
+}
+
+.status {
+    padding: 10px;;
+}

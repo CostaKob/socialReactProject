@@ -6,14 +6,14 @@ import errorStyle from '../../../Common/FormsControls/FormsControls.module.css';
 
 const ProfileDataForm = ({ profile, handleSubmit, error }) => {
   return (
-    <form onSubmit={profile, handleSubmit}>
+    <form className={classes.column} onSubmit={profile, handleSubmit}>
       <div>
         <button>Save</button>
       </div>
 
       {error && <div className={errorStyle.formSummaryError}>{error}</div>}
 
-      <div> {createField("Full name", "fullName", [], Input)}</div>
+      <div><b>My Name:</b> {createField("Full name", "fullName", [], Input)}</div>
       <div><b>About me:</b>{createField("About Me", "aboutMe", [], Textarea)}</div>
       <div>My Contacts:
         {Object.keys(profile.contacts).map(key => {
