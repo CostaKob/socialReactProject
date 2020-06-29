@@ -30,43 +30,45 @@ class App extends React.Component {
   }
   componentDidMount() {
     this.props.initializeApp();
-    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors );
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
   }
   componentWillUnmount() {
-    window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors );
+    window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
   }
   render() {
     if (!this.props.initialized) {
       return <Preloader />
     }
     return (
-      <div className='app-wrapper'>
-        <HeaderContainer />
-        <Navbar />
+      <>
+        <HeaderContainer/>
+        <div className='app-wrapper'>
+          <Navbar />
 
-        <div className='app-wrapper-content'>
-          <Switch>
-            <Route exact path='/' render={ () => <Redirect to={'/profile'} /> } />
+          <div className='app-wrapper-content'>
+            <Switch>
+              <Route exact path='/' render={() => <Redirect to={'/profile'} />} />
 
-            <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)} />
+              <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)} />
 
-            <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
+              <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
 
-            <Route path='/users' render={() => <UsersContainer />} />
+              <Route path='/users' render={() => <UsersContainer />} />
 
-            <Route path='/news' render={() => <News />} />
+              <Route path='/news' render={() => <News />} />
 
-            <Route path='/music' render={() => <Music />} />
+              <Route path='/music' render={() => <Music />} />
 
-            <Route path='/settings' render={() => <Settings />} />
+              <Route path='/settings' render={() => <Settings />} />
 
-            <Route path='/login' render={() => <Login />} />
+              <Route path='/login' render={() => <Login />} />
 
-            <Route path='*' render={() => <div>404 NOT FOUND</div>} />
-          </Switch>
+              <Route path='*' render={() => <div>404 NOT FOUND</div>} />
+            </Switch>
+          </div>
+          <Footer />
         </div>
-        <Footer/>
-      </div>
+      </>
     );
   }
 }
