@@ -16,6 +16,7 @@ import store from './redux/redux-store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { withSuspense } from './hoc/withSuspense';
+import Footer from './Components/Footer/Footer';
 // import DialogsContainer from './Components/Dialogs/DialogsContainer';
 // import ProfileContainer from './Components/Profile/ProfileContainer';
 const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'));
@@ -23,9 +24,9 @@ const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileCo
 
 
 class App extends React.Component {
+  //global error handle
   catchAllUnhandledErrors = (promiseRejectionEvent) => {
     alert("Some error occured");
-
   }
   componentDidMount() {
     this.props.initializeApp();
@@ -64,6 +65,7 @@ class App extends React.Component {
             <Route path='*' render={() => <div>404 NOT FOUND</div>} />
           </Switch>
         </div>
+        <Footer/>
       </div>
     );
   }

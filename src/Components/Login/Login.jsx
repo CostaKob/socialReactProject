@@ -13,7 +13,7 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) => {
         <form onSubmit={handleSubmit}>
             {createField("E-mail", "email", [required], Input)}
             {createField("Password", "password", [required], Input, { type: "password" })}
-            {createField(null, "rememberMe", [], Input, { type: "checkbox" }, "Remember Me")}
+            {createField(null, "rememberMe", [], Input, { type: "checkbox" }, "Remember me")}
             
             { captchaUrl && <img src={captchaUrl} />}
             { captchaUrl &&  createField("Symbols from image", "captcha", [required], Input) }
@@ -26,7 +26,7 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) => {
             </div>
             }
 
-            <div>
+            <div className={classes.loginBtn}>
                 <button>Login</button>
             </div>
         </form>
@@ -45,8 +45,8 @@ const Login = (props) => {
     }
 
     return (
-        <div>
-            <h1>Login Page</h1>
+        <div className={classes.loginForm}>
+            <h1>Login</h1>
             <LoginReduxForm captchaUrl={props.captchaUrl} onSubmit={onSubmit} />
         </div>
     )
