@@ -1,20 +1,52 @@
+.profileInfoContainer {
+    width: 100%;
+}
+
+.profileHeader {
+    background-color: #e44d3a;
+}
+
+.profileData {
+    
+}
+.nameAndAbout {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
 .image img {
+    width: 250px;
     border-radius: 150px;
+    margin-bottom: -100px;
+    border: 8px solid white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.editPhoto {
+    display: flex;
+    justify-content: flex-end;
+    padding:3px;
+}
+
+.editBtn {
+
 }
 
 a:hover {
     cursor:pointer;
    }
 .contact a {
-    color: white;
     text-decoration: none;
-}
-
-.column {
-    float: right;
-    width:50%;
 }
 
 .status {
     padding: 10px;;
 }
+

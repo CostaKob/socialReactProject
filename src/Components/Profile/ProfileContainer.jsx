@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 // import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import classes from './Profile.module.css';
+
 
 class ProfileContainer extends React.Component {
 
@@ -35,7 +37,7 @@ class ProfileContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={classes.profileContainer}>
         <Profile {...this.props}
           profile={this.props.profile}
           status={this.props.status}

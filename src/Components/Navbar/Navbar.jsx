@@ -2,12 +2,8 @@
 import React from 'react';
 import classes from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
-import FriendsBar from './FriendsBar/FriendsBar';
 
 const Navbar = () => {
-
-// let friendsElements =
-//     store.state.sideBar.friends.map( f => <FriendsBar name={f.name} id={f.id} img={f.img} /> );
 
   return (
       <nav className={classes.nav}>
@@ -29,12 +25,6 @@ const Navbar = () => {
         <div className={classes.item}>
           <NavLink to="/users" activeClassName={classes.active}>Users</NavLink>
         </div>
-        {/* <div className={classes.friendsBarHeader}>
-          <h3>My Friends</h3>
-        </div>
-          <div className={classes.friendsBarContent}>
-            {friendsElements}
-          </div> */}
       </nav>
   );
 }

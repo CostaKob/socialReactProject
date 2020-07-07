@@ -6,7 +6,7 @@ import errorStyle from '../../../Common/FormsControls/FormsControls.module.css';
 
 const ProfileDataForm = ({ profile, handleSubmit, error }) => {
   return (
-    <form className={classes.column} onSubmit={profile, handleSubmit}>
+    <form onSubmit={profile, handleSubmit}>
       <div>
         <button>Save</button>
       </div>
